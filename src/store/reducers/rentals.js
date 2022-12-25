@@ -1,9 +1,13 @@
 const rentals = (state = [], action) => {
-    if (action.type === 'FETCH_RENTALS') {
+  debugger;
+  switch(action.type) {
+    case 'FETCH_RENTALS':
       return action.rentals;
-    } else {
+    case 'CREATE_RENTAL':
+      return [...state, action.rental];
+    default:
       return state;
-    }
   }
-  
-  export default rentals;
+}
+
+export default rentals;
