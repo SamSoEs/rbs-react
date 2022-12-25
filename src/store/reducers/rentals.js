@@ -1,5 +1,4 @@
 const rentals = (state = [], action) => {
-  debugger;
   switch(action.type) {
     case 'FETCH_RENTALS':
       return action.rentals;
