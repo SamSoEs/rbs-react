@@ -1,6 +1,4 @@
-import { rentalData } from "../store/data"
-import rental from "../store/reducers/rental"
-
+import { rentalData } from "store/data"
 
 export const fetchRentals = () => {
     return {

@@ -1,8 +1,8 @@
 import React from 'react';
 import withRouter  from '../withRouter';
 import { connect } from 'react-redux';
-import { fetchRentalById } from '../actions';
-import { capitalize } from '../helpers/functions';
+import { fetchRentalById } from 'actions';
+import { capitalize } from 'helpers/functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class RentalDetail extends React.Component {
