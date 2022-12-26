@@ -1,4 +1,5 @@
 import { rentalData } from "../store/data"
+import rental from "../store/reducers/rental"
 
 
 export const fetchRentals = () => {
@@ -8,6 +9,14 @@ export const fetchRentals = () => {
     }
 }
 
+export const fetchRentalById = (rentalId) => {
+
+    const rental = rentalData.find(rental => rental._id === rentalId);
+    return {
+        type: 'FETCH_RENTAL_BY_ID',
+        rental
+    }
+}
 
 export const createRental = rental => {
     return {

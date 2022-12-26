@@ -1,7 +1,7 @@
 exports.rentalData = [{
     _id: '1',
     title: "Nice view on ocean",
-    city: "San Francisco",
+    city: "san francisco",
     category: "condo",
     image: "https://placeholder.pics/svg/350x250/E7FF79",
     numOfRooms: 4,
@@ -12,7 +12,7 @@ exports.rentalData = [{
   {
     _id: '2',
     title: "Modern apartment in center",
-    city: "New York",
+    city: "new york",
     category: "apartment",
     image: "https://placeholder.pics/svg/350x250/E7FF79",
     numOfRooms: 1,
@@ -23,7 +23,7 @@ exports.rentalData = [{
   {
     _id: '3',
     title: "Old house in nature",
-    city: "Bratislava",
+    city: "bratislava",
     category: "house",
     image: "https://placeholder.pics/svg/350x250/E7FF79",
     numOfRooms: 5,
