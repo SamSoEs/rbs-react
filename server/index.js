@@ -1,7 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+
+app.use(bodyParser.json())
+
 
 const rentals = [
     {
@@ -25,6 +30,13 @@ const rentals = [
     const rental = rentals.find(r => r._id === rentalId);
   
     return res.json(rental)
+  })
+
+  app.post('/api/v1/rentals', (req, res) => {
+    const rentalData = req.body;
+    rentals.push(rentalData);
+  
+    return res.json({message: `Rental with id: ${rentalData._id} was added!`});
   })
   
 app.listen(PORT, () => {
