@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const rentalRoutes = require('./routes/rentals');
 
-const Rental = require('./models/rental'); 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
