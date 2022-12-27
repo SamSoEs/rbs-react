@@ -38,6 +38,25 @@ const rentals = [
   
     return res.json({message: `Rental with id: ${rentalData._id} was added!`});
   })
+
+  app.delete('/api/v1/rentals/:id', (req, res) => {
+    const { id } = req.params;
+    const rIndex = rentals.findIndex(r => r._id === id);
+  
+    rentals.splice(rIndex, 1);
+    return res.json({message: `Rental with id: ${id} was removed!`});
+  })
+  
+  app.patch('/api/v1/rentals/:id', (req, res) => {
+    const { id } = req.params;
+    const rentalToUpdate = req.body;
+    const rIndex = rentals.findIndex(r => r._id === id);
+  
+    rentals[rIndex].city = rentalToUpdate.city;
+    rentals[rIndex].title = rentalToUpdate.title;
+  
+    return res.json({message: `Rental with id: ${id} was updated!`});
+  })
   
 app.listen(PORT, () => {
   console.log('Server is listening on port: ', PORT);
