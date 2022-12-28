@@ -3,20 +3,13 @@ import React from 'react';
 import RentalCard from '../components/rental/RentalCard';
 import { connect } from 'react-redux';
 import { fetchRentals, createRental } from 'actions';
-import axios from 'axios';
 
 class RentalHome extends React.Component {
 
  
 
   componentDidMount() {
-    // const store = this.context;
-    // const { rentals } = this.props;
-    axios.get('http://localhost:3001/api/v1/rentals').then(res => {
-            const rentals = res.data;
-            debugger;
-            this.props.dispatch(fetchRentals(rentals));
-        })
+    this.props.dispatch(fetchRentals());
     }
 
   renderRentals = (rentals) =>

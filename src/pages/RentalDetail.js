@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class RentalDetail extends React.Component {
   componentDidMount() {
     const { id } = this.props.params;
-    this.props.dispatch(fetchRentalById(id))
+    //this.props.dispatch(fetchRentalById(id))
   }
 
   render() {
