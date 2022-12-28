@@ -4,9 +4,9 @@ import Header from './components/shared/Header';
 import AppRoutes from './AppRoutes';
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from 'react-redux';
-import {initStore} from './store';
+import store from './store';
 
-const store = initStore();
+
 
 
 const App = () => {

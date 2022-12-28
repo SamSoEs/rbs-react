@@ -1,23 +1,36 @@
 import axios from 'axios';
+import rental from 'store/reducers/rental';
 
-export const fetchRentals = () => { 
-   return axios.get('http://localhost:3001/api/v1/rentals').then(res => {
+export const fetchRentals = () =>
+    dispatch => {
+        axios.get('http://localhost:3001/api/v1/rentals').then(res => {
             const rentals = res.data;
-            return {
+            dispatch({
                 type: 'FETCH_RENTALS',
                 rentals
-            }
+            });
         })
-
-}
-
-export const fetchRentalById = (rentalId) => {
-
-    return {
-        type: 'FETCH_RENTAL_BY_ID',
-        rentals: []
     }
-}
+
+
+export const fetchRentalById = rentalId => 
+     async dispatch => {
+        const res = await axios.get(`http://localhost:3001/api/v1/rentals/${rentalId}`)
+        dispatch({
+            type: 'FETCH_RENTAL_BY_ID',
+            rental: res.data
+        }); 
+    }
+
+    // dispatch => {
+    //     axios.get(`http://localhost:3001/api/v1/rentals/${rentalId}`).then(res => {
+    //         const rental = res.data;
+    //         dispatch({
+    //             type: 'FETCH_RENTAL_BY_ID',
+    //             rental
+    //         });
+    //     })
+    // }
 
 export const createRental = rental => {
     return {

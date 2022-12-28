@@ -14,10 +14,10 @@ mongoose.connect('mongodb+srv://samaneghbali1:Sa12344321@cluster0.kx9khxy.mongod
 });
 
 app.use(bodyParser.json())
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.use('/api/v1/rentals', rentalRoutes);
 
 app.listen(PORT, () => {
