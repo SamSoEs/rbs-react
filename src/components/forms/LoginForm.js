@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, ErroMessage } from 'react-hook-form';
 // eslint-disable-next-line
 const EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const LoginForm = ({ onSubmit }) => {
@@ -46,6 +46,7 @@ const LoginForm = ({ onSubmit }) => {
                         }
                     </div>
                 }
+
             </div>
             <button
                 type="submit"
