@@ -8,6 +8,9 @@ const usersRoutes = require('./routes/users');
 
 
 //models
+require('./models/rental');
+require('./models/user');
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,7 +18,6 @@ const PORT = process.env.PORT || 3001;
 mongoose.connect('mongodb+srv://samaneghbali1:Sa12344321@cluster0.kx9khxy.mongodb.net/rbs-react?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
 }, () => {
   console.log('Connected to DB!')
 });

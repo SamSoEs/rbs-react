@@ -27,4 +27,4 @@ rentalSchema.statics.sendError = function(res, config) {
     .send({errors: [{title: 'Rental Error!', detail}]})
 }
 
-module.exports = mongoose.model('Rental', rentalSchema);
+module.exports = mongoose.models.Rental  || mongoose.model('Rental', rentalSchema);
