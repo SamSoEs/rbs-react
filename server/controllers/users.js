@@ -68,6 +68,7 @@ exports.onlyAuthUser = (req, res, next) => {
 
   if (token) {
     const decodedToken = parseToken(token);
+
     if (!decodedToken) { return notAuthorized(res); }
 
     User.findById(decodedToken.sub, (error, foundUser) => {
@@ -88,7 +89,11 @@ exports.onlyAuthUser = (req, res, next) => {
 }
 
 function parseToken(token) {
-  return jwt.verify(token.split(' ')[1], config.JWT_SECRET) || null;
+  try {
+    return jwt.verify(token.split(' ')[1], config.JWT_SECRET);
+  } catch(error) {
+    return null;
+  }
 }
 
 function notAuthorized(res) {
