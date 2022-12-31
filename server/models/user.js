@@ -24,6 +24,10 @@ const userSchema = new Schema({
     required: 'Password is required!'
   }
 })
+
+userSchema.methods.hasSamePassword = function(providedPassword) {
+  return bcrypt.compareSync(providedPassword, this.password)
+}
 userSchema.pre('save', function(next) {
   const user = this;
 
