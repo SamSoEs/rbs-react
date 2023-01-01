@@ -2,8 +2,7 @@
   exports.getRentals = (req, res) => {
     Rental.find({}, (err, foundRentals) => {
         if (err) {
-          return Rental
-          .sendError(res, { status: 422, detail: 'Cannot retrieve rental data!'});
+          return res.mongoError(error);
           }
       
           return res.json(foundRentals);     
@@ -36,8 +35,7 @@
 
   Rental.create(rentalData, (error, createdRental) => {
     if (error) {
-      return Rental
-        .sendError(res, { status: 422, detail: 'Cannot post data!'});
+      return res.mongoError(error);
     }
 
     return res.json({message: `Rental with id: ${createdRental._id} was added!`});

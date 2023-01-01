@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+const config = require('./config/dev');
+const { provideErrorHandler } = require('./middlewares');
 //routes
 const rentalRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
@@ -26,6 +27,8 @@ mongoose.connect('mongodb+srv://samaneghbali1:Sa12344321@cluster0.kx9khxy.mongod
 
 //middlewares
 app.use(bodyParser.json())
+app.use(provideErrorHandler);
+
 // const middleware = (req, res, next) => {
 //   const isError = false;
 //   console.log('Hello World!');
