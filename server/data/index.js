@@ -8,9 +8,6 @@ exports.users = [{
   password: "testtest2"
 }]
 
-
-
-
 exports.rentals = [{
     title: "Nice view on ocean",
     city: "San Francisco",
