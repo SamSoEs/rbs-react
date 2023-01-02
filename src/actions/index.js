@@ -49,3 +49,9 @@ export const registerUser = (registerData) => {
       })
   }
 
+  export const loginUser = (loginData) => {
+    return axios
+      .post('http://localhost:3001/api/v1/users/login', loginData)
+      .then(res => res.data)
+      .catch(error => Promise.reject(error.response.data))
+  }
