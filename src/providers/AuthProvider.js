@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from 'actions';
+import { loginUser, userAuthenticated  } from 'actions';
 import jwt_decode from 'jwt-decode';
+import moment from 'moment';
 
 const { createContext, useContext } = React;
 
@@ -10,9 +11,19 @@ const AuthContext = createContext(null);
 const AuthBaseProvider = ({ children, dispatch }) => {
 
     const checkAuthState = () => {
-        alert('Checking Auth State');
-    }
+        if(localStorage.getItem('bwm_token')){
+            const decodedToken = jwt_decode(localStorage.getItem('bwm_token'));
+            if (decodedToken && moment().isBefore(getExpiration(decodedToken))) {
+              dispatch(userAuthenticated(decodedToken))
+            }
+        }
 
+      }
+    
+      const getExpiration = (decodedToken) => {
+        return moment.unix(decodedToken.exp);
+      }
+    
 
     const signIn = (loginData) => {
         return loginUser(loginData)

@@ -55,3 +55,10 @@ export const registerUser = (registerData) => {
       .then(res => res.data)
       .catch(error => Promise.reject(error.response.data))
   }
+
+  export const userAuthenticated = (decodedToken) => {
+    return {
+      type: 'USER_AUTHENTICATED',
+      username: decodedToken.username || ''
+    }
+  }
