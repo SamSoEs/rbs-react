@@ -23,7 +23,11 @@ const AuthBaseProvider = ({ children, dispatch }) => {
       const getExpiration = (decodedToken) => {
         return moment.unix(decodedToken.exp);
       }
-    
+
+      const signOut = () => {
+        localStorage.removeItem('bwm_token');
+        dispatch({type: 'USER_SIGNED_OUT'});
+      }
 
     const signIn = (loginData) => {
         return loginUser(loginData)
@@ -39,7 +43,7 @@ const AuthBaseProvider = ({ children, dispatch }) => {
     }
 
     const authApi = {
-        signIn, checkAuthState
+        signIn, checkAuthState, signOut
     }
 
     return (

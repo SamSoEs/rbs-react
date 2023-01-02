@@ -5,6 +5,7 @@ import RentalDetail from './pages/RentalDetail';
 import RentalHome from './pages/RentalHome';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import SecretPage from 'pages/SecretPage';
 
 const AppRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<RentalHome/>}/>
         <Route path="/rentals/:id" element={<RentalDetail/>}/>
+        <Route path="/secret" element={<SecretPage/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
       </Routes>
