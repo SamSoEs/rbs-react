@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 
+import AuthRoute from 'components/auth/AuthRoute';
+
 import RentalDetail from './pages/RentalDetail';
 import RentalHome from './pages/RentalHome';
 import Login from './pages/Login';
@@ -11,11 +13,11 @@ const AppRoutes = () => {
   return (
     <div className="container bwm-container">
       <Routes>
-        <Route path="/" element={<RentalHome/>}/>
-        <Route path="/rentals/:id" element={<RentalDetail/>}/>
-        <Route path="/secret" element={<SecretPage/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
+        <Route path="/" element={<RentalHome />} />
+        <Route path="/rentals/:id" element={<RentalDetail />} />
+        <Route path="/secret" element={<AuthRoute component={SecretPage}/>}></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   )

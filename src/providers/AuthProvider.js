@@ -42,8 +42,16 @@ const AuthBaseProvider = ({ children, dispatch }) => {
             })
     }
 
+    const isAuthenticated = () => {
+        const token = localStorage.getItem('bwm_token');
+        if (!token) { return false; }
+        const decodedToken = jwt_decode(token);
+        return decodedToken && moment().isBefore(getExpiration(decodedToken));
+      }
+    
+    
     const authApi = {
-        signIn, checkAuthState, signOut
+        signIn, checkAuthState, signOut, isAuthenticated
     }
 
     return (
