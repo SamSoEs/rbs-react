@@ -1,7 +1,8 @@
 import React from 'react';
 import LoginForm from 'components/forms/LoginForm';
-import { loginUser } from 'actions';
 import { Navigate } from 'react-router-dom';
+import { withAuth } from 'providers/AuthProvider';
+
 class Login extends React.Component {
 
   constructor() {
@@ -13,7 +14,7 @@ class Login extends React.Component {
   }
 
   signIn = (loginData) => {
-    loginUser(loginData)
+      this.props.auth.signIn(loginData)
       .then(token => {
         console.log(token);
         this.setState({shouldRedirect: true});
@@ -49,4 +50,4 @@ class Login extends React.Component {
 //   }
 // } 
 
-export default Login;
+export default  withAuth(Login);;
