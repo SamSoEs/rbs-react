@@ -43,8 +43,9 @@ export const createRental = rental => {
 
 export const registerUser = (registerData) => {
     return axios
-      .post('/api/v1/users/register', registerData)
+      .post('http://localhost:3001/api/v1/users/register', registerData)
       .catch(error => {
         return Promise.reject(error);
       })
   }
+
