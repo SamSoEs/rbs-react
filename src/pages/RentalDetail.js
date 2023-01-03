@@ -11,6 +11,11 @@ class RentalDetail extends React.Component {
     const { id } = this.props.params;
     this.props.dispatch(fetchRentalById(id))
   }
+
+  componentWillUnmount() {
+    this.props.dispatch({type: 'UNMOUNT_RENTAL'});
+  }
+
   get location() {
     const { rental: { street, city }} = this.props;
     return street && city && city + ', ' + street
