@@ -15,7 +15,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<RentalHome />} />
         <Route path="/rentals/:id" element={<RentalDetail />} />
-        <Route path="/secret" element={<AuthRoute component={SecretPage}/>}></Route>
+        <Route path="/secret" element={<AuthRoute><SecretPage/></AuthRoute>}></Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

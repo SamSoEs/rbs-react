@@ -4,13 +4,14 @@ import { Route, Navigate } from 'react-router-dom';
 import { useAuth } from 'providers/AuthProvider';
 
 
-const AuthRoute = ({children, props, ...rest}) => {
+const GuestRoute = ({children,props, ...rest}) => {
   const authService = useAuth();
   const onlyChild = React.Children.only(children);
   return (
-    authService.isAuthenticated() ?
-    React.cloneElement(onlyChild, {...rest, ...props}) : <Navigate to='/login' />
+    !authService.isAuthenticated() ?
+       React.cloneElement(onlyChild, {...rest, ...props}) : 
+       <Navigate to='/'/> 
   )
 }
 
-export default AuthRoute;
+export default GuestRoute;
