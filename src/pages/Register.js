@@ -21,7 +21,7 @@ class Register extends React.Component {
     const { shouldRedirect } = this.state;
 
     if (shouldRedirect) {
-     return <Navigate  to='/login' />
+     return <Navigate  to='/login'/>
     }
     return (
       <div className="bwm-form">

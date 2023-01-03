@@ -22,6 +22,7 @@ class Login extends React.Component {
       .catch(errors => this.setState({errors}))
   }
   render() {
+    // const { message } = this.props.location || '';
     const { errors, shouldRedirect } = this.state;
     if (shouldRedirect) {
       return <Navigate to='/' />

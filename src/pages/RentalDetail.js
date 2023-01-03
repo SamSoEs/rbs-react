@@ -5,7 +5,7 @@ import { fetchRentalById } from 'actions';
 import { capitalize } from 'helpers/functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import RentalInfo from 'components/rental/RentalInfo';
-
+import TomMap from 'components/map/TomMap';
 class RentalDetail extends React.Component {
   componentDidMount() {
     const { id } = this.props.params;
@@ -24,7 +24,7 @@ class RentalDetail extends React.Component {
 
             </div>
             <div className="col-md-6">
-              <img src={rental.image} alt={rental.title} />
+              <TomMap/>
             </div>
           </div>
         </div>
