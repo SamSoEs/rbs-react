@@ -11,6 +11,7 @@ const rentalSchema = new Schema({
   description: { type: String, required: true },
   dailyPrice: { type: Number, required: true },
   shared: Boolean,
+  owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   createdAt: { type: Date, default: Date.now }
 })
 // available on instance

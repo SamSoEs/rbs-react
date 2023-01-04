@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+  _id: {type: Schema.Types.ObjectId},
   username: {
     type: String,
     minlength: [4, 'Invalid length! Minimum is 4 characters'],
