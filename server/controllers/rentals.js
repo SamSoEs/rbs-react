@@ -23,6 +23,7 @@
   
   exports.createRental = (req, res) => {
     const rentalData = req.body;
+    rentalData.owner = res.locals.user;
   // const newRental = new Rental(rentalData);
 
   // newRental.save((error, createdRental) => {
@@ -38,7 +39,8 @@
       return res.mongoError(error);
     }
 
-    return res.json({message: `Rental with id: ${createdRental._id} was added!`});
+    return res.json(createdRental);
+
   })
   }
   
