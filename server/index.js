@@ -8,12 +8,14 @@ const cors = require('cors');
 //routes
 const rentalRoutes = require('./routes/rentals');
 const usersRoutes = require('./routes/users');
+const bookingRoutes = require('./routes/bookings');
 
 const { onlyAuthUser } = require('./controllers/users');
 
 //models
 require('./models/rental');
 require('./models/user');
+require('./models/booking');
 
 const corsOptions ={
   origin:'http://localhost:3000', 
@@ -51,6 +53,7 @@ app.get('/api/v1/secret', onlyAuthUser, (req, res) => {
 app.use('/api/v1/rentals', rentalRoutes);
 //app.use('/api/v1/rentals',middleware, rentalRoutes);
 app.use('/api/v1/users', usersRoutes);
+app.use('/api/v1/bookings', bookingRoutes);
 
 
 app.listen(PORT, () => {
