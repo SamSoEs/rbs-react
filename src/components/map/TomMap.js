@@ -5,18 +5,18 @@ import { useMap } from 'providers/MapProvider';
 const TomMap = ({location}) => {
   let map = useRef(null);
 
-  const { initMap, requestGeoLocation, setCenter, addMarker, addPopupMessage  } = useMap();
+  const { initMap, getGeoPosition, setCenter, addMarker, addPopupMessage  } = useMap();
 
   const getGeoLocation =  useCallback((location) => {
     location &&
-    requestGeoLocation(location)
+    getGeoPosition(location)
       .then(position => {
         setCenter(map.current, position);
         addMarker(map.current, position);
       }).catch(error => {
         addPopupMessage(map.current, error);
       })
-  }, [requestGeoLocation, map, setCenter, addMarker, addPopupMessage])
+  }, [getGeoPosition, map, setCenter, addMarker, addPopupMessage])
 
   useEffect(() => {
     getGeoLocation(location);
