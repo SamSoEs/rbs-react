@@ -12,7 +12,8 @@ export const MapProvider = ({children, apiKey}) => {
     const map = tt.map({
       key: apiKey,
       container: 'bwm-map',
-      zoom: 15
+      zoom: 15,
+      scrollZoom: false
     });
 
     map.addControl(new tt.NavigationControl());
@@ -21,6 +22,25 @@ export const MapProvider = ({children, apiKey}) => {
   const setCenter = (map, position) => {
     map.setCenter(new tt.LngLat(position.lon, position.lat))
   }
+  const addMarker = (map, position) => {
+
+    const markerDiv = document.createElement('div');
+    markerDiv.className = 'bwm-marker';
+
+    new tt.Marker({
+      element: markerDiv
+    })
+      .setLngLat([position.lon, position.lat])
+      .addTo(map)
+  }
+
+  const addPopupMessage = (map, message) => {
+    new tt.Popup({className: 'bwm-popup', closeButton: false, closeOnClick: false})
+      .setLngLat(new tt.LngLat(0,0))
+      .setHTML(`<p>${message}</p>`)
+      .addTo(map)
+  }
+
   const requestGeoLocation = location => {
     return axios
       .get(`https://api.tomtom.com/search/2/geocode/${location}.JSON?key=${apiKey}`)
@@ -33,11 +53,11 @@ export const MapProvider = ({children, apiKey}) => {
         }
 
         return Promise.reject('Location not found!');
-      })
+      }).catch(() =>  Promise.reject('Location not found!'))
   }
 
   const mapApi = {
-    initMap, requestGeoLocation, setCenter
+    initMap, requestGeoLocation, setCenter, addMarker, addPopupMessage
   }
 
   return (
