@@ -15,9 +15,11 @@ class BookingReserve extends React.Component {
             }
         }
     }
-
+componentDidMount(){
+    debugger;
+}
     handleApply = (_, { startDate, endDate }) => {
-        this.dateRef.current.value = moment(startDate).format('YYYY/MM/DD') + ' to ' + moment(endDate).format('YYYY/MM/DD')
+        this.dateRef.current = moment(startDate).format('YYYY/MM/DD') + ' to ' + moment(endDate).format('YYYY/MM/DD')
 
         this.setState({
             proposedBooking: {
