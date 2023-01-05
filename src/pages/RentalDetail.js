@@ -6,6 +6,8 @@ import { capitalize } from 'helpers/functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import RentalInfo from 'components/rental/RentalInfo';
 import TomMap from 'components/map/TomMap';
+import BookingReserve from 'components/booking/BookingReserve';
+
 class RentalDetail extends React.Component {
   componentDidMount() {
     const { id } = this.props.params;
@@ -42,7 +44,9 @@ class RentalDetail extends React.Component {
             <div className="col-md-8">
             <RentalInfo rental={rental} />
             </div>
-            <div className="col-md-4"> BOOKING</div>
+            <div className="col-md-4"> 
+              <BookingReserve />
+            </div>
           </div>
         </div>
       </section>
