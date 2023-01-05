@@ -1,5 +1,7 @@
 import axios from 'axios';
-import rental from 'store/reducers/rental';
+import AxiosService from 'services/AxiosService';
+const { bwmAxios } = AxiosService;
+
 
 export const fetchRentals = () =>
     dispatch => {
@@ -13,52 +15,58 @@ export const fetchRentals = () =>
     }
 
 
-export const fetchRentalById = rentalId => 
-     async dispatch => {
-        dispatch({type: 'IS_FETCHING_RENTAL'});
+export const fetchRentalById = rentalId =>
+    async dispatch => {
+        dispatch({ type: 'IS_FETCHING_RENTAL' });
         const res = await axios.get(`http://localhost:3001/api/v1/rentals/${rentalId}`)
         dispatch({
             type: 'FETCH_RENTAL_BY_ID',
             rental: res.data
-        }); 
+        });
     }
 
-    // dispatch => {
-    //     axios.get(`http://localhost:3001/api/v1/rentals/${rentalId}`).then(res => {
-    //         const rental = res.data;
-    //         dispatch({
-    //             type: 'FETCH_RENTAL_BY_ID',
-    //             rental
-    //         });
-    //     })
-    // }
+// dispatch => {
+//     axios.get(`http://localhost:3001/api/v1/rentals/${rentalId}`).then(res => {
+//         const rental = res.data;
+//         dispatch({
+//             type: 'FETCH_RENTAL_BY_ID',
+//             rental
+//         });
+//     })
+// }
 
 export const createRental = rental => {
-    return {
-        type: 'CREATE_RENTAL',
-        rental
-    }
+
+    // const token = localStorage.getItem('bwm_token');
+
+    // const config = {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`
+    //     }
+    // }
+
+    return bwmAxios.post('rentals', rental);
 }
 
 
 export const registerUser = (registerData) => {
     return axios
-      .post('http://localhost:3001/api/v1/users/register', registerData)
-      .catch(error => {
-        return Promise.reject(error);
-      })
-  }
+        .post('http://localhost:3001/api/v1/users/register', registerData)
+        .catch(error => {
+            return Promise.reject(error);
+        })
+}
 
-  export const loginUser = (loginData) => {
+export const loginUser = (loginData) => {
     return axios
-      .post('http://localhost:3001/api/v1/users/login', loginData)
-      .then(res => res.data)
-      .catch(error => Promise.reject(error.response.data))
-  }
+        .post('http://localhost:3001/api/v1/users/login', loginData)
+        .then(res => res.data)
+        .catch(error => Promise.reject(error.response.data))
+}
 
-  export const userAuthenticated = (decodedToken) => {
+export const userAuthenticated = (decodedToken) => {
     return {
-      type: 'USER_AUTHENTICATED',
-      username: decodedToken.username || ''
+        type: 'USER_AUTHENTICATED',
+        username: decodedToken.username || ''
     }
-  }
+}

@@ -1,102 +1,113 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
-const RentalForm = () => {
-  return (
-    <form>
-      <div className="form-group">
-        <label htmlFor="title">Title</label>
-        <input 
-          type="text"
-          className="form-control"
-          id="title"/>
-      </div>
+const rentalOptions = ['apartment', 'condo', 'house'];
 
-      <div className="form-group">
-        <label htmlFor="city">City</label>
-        <input 
-          type="text"
-          className="form-control"
-          id="city"/>
-      </div>
+const RentalForm = ({ onSubmit }) => {
 
-      <div className="form-group">
-        <label htmlFor="street">Street</label>
-        <input 
-          type="text"
-          className="form-control"
-          id="street"/>
-      </div>
+    const { register, handleSubmit } = useForm();
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-group">
+                <label htmlFor="title">Title</label>
+                <input
+                    {...register("title", { required: true })}
+                    type="text"
+                    className="form-control"
+                    id="title" />
+            </div>
 
-      <div className="form-group">
-        <label htmlFor="category">Category</label>
+            <div className="form-group">
+                <label htmlFor="city">City</label>
+                <input
+                    {...register("city", { required: true })}
+                    type="text"
+                    className="form-control"
+                    id="city" />
+            </div>
 
-        <select className="form-control"
-                id="category">
-          <option> Something 1 </option>
-          <option> Something 2 </option>
-        </select>
-      </div>
+            <div className="form-group">
+                <label htmlFor="street">Street</label>
+                <input
+                    {...register("street", { required: true })}
+                    type="text"
+                    className="form-control"
+                    id="street" />
+            </div>
 
-      <div className="form-group">
-        <label htmlFor="bedrooms">Image Url</label>
-        <input 
-          type="text"
-          className="form-control"
-          id="image"/>
-      </div>
+            <div className="form-group">
+                <label htmlFor="category">Category</label>
 
-      <div className="form-group">
-        <label htmlFor="bedrooms">Rooms</label>
-        <input 
-          type="number"
-          className="form-control"
-          id="numOfRooms"/>
-      </div>
+                <select
+                    {...register("category", { required: true })}
 
-      <div className="form-group">
-        <label htmlFor="description">Description</label>
-        <textarea 
-          rows="5"
-          type="text"
-          className="form-control"
-          id="description">
-        </textarea>
-      </div>
+                    className="form-control"
+                    id="category">
+                    {
+                        rentalOptions.map(option =>
+                            <option key={option}>{option}</option>
+                        )
+                    }
+                </select>
+            </div>
 
-      <div className="form-group">
-        <label htmlFor="dailyRate">Daily Price</label>
-        <div className="input-group">
-          <div className="input-group-prepend">
-            <div className="input-group-text">$</div>
-          </div>
-          <input 
-            type="number"
-            className="form-control"
-            id="dailyPrice"/>
-        </div>
-      </div>
+            <div className="form-group">
+                <label htmlFor="bedrooms">Image Url</label>
+                <input
+                    {...register("image", { required: true })}
+                    type="text"
+                    className="form-control"
+                    id="image" />
+            </div>
 
-      <div className="form-group">
-        <label htmlFor="phone">Phone</label>
-        <input 
-          type="text"
-          className="form-control"
-          id="phone"/>
-      </div>
+            <div className="form-group">
+                <label htmlFor="bedrooms">Rooms</label>
+                <input
+                    {...register("numOfRooms", { required: true })}
+                    type="number"
+                    className="form-control"
+                    id="numOfRooms" />
+            </div>
 
-      <div className="form-group">
-        <label htmlFor="shared">Shared</label>
-        <input 
-          type="checkbox"
-          className="form-control"
-          id="shared"/>
-      </div>
-      <button 
-        type="submit"
-        className="btn btn-bwm-main">Create
-      </button>
-    </form>
-  )
+            <div className="form-group">
+                <label htmlFor="description">Description</label>
+                <textarea
+                    {...register("description", { required: true })}
+                    rows="5"
+                    type="text"
+                    className="form-control"
+                    id="description">
+                </textarea>
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="dailyRate">Daily Price</label>
+                <div className="input-group">
+                    <div className="input-group-prepend">
+                        <div className="input-group-text">$</div>
+                    </div>
+                    <input
+                        {...register("dailyPrice", { required: true })}
+
+                        type="number"
+                        className="form-control"
+                        id="dailyPrice" />
+                </div>
+            </div>
+            <div className="form-group">
+                <label htmlFor="shared">Shared</label>
+                <input
+                    {...register("shared", { required: true })}
+                    type="checkbox"
+                    className="form-control"
+                    id="shared" />
+            </div>
+            <button
+                type="submit"
+                className="btn btn-bwm-main">Create
+            </button>
+        </form>
+    )
 }
 
 export default RentalForm;
